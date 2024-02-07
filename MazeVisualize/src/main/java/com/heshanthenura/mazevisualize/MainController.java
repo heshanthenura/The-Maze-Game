@@ -34,7 +34,7 @@ public class MainController implements Initializable {
             visited.add(0);
             position.add(0);
             gc = canvas.getGraphicsContext2D();
-            gc.setFill(Color.BLACK);
+            gc.setFill(Color.RED);
             gc.fillRect(0, 0, 600, 600);
 
             double totalGapWidth = (col - 1) * gap;
@@ -60,9 +60,14 @@ public class MainController implements Initializable {
     }
 
     void generateMaze() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         while (true) {
             try {
-                Thread.sleep(1);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -74,8 +79,8 @@ public class MainController implements Initializable {
                 Platform.runLater(() -> {
                     double drawX = (currentPosition % col) * (cellWidth + gap);
                     double drawY = (currentPosition / col) * (cellHeight + gap);
-                    gc.setFill(Color.RED);
-                    gc.fillRect(drawX, drawY, cellWidth, cellHeight);
+                    gc.setFill(Color.WHEAT);
+//                    gc.fillRect(drawX, drawY, cellWidth, cellHeight);
                 });
                 position.pop();
             } else {
